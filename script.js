@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function validateSobrenome() {
         const value = sobrenomeInput.value.trim();
         if (value.length < 4) {
-            showError(sobrenomeInput, 'Sobrenome deve ter pelo menos 6 caracteres');
+            showError(sobrenomeInput, 'Sobrenome deve ter pelo menos 4 caracteres');
             return false;
         }
         hideError(sobrenomeInput);
