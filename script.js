@@ -66,13 +66,29 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
-        const idade = validateIdade(dataInput.value);
+        const dataNascimento = new Date(dataInput.value);
+        const hoje = new Date();
+        
+        let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+        const mesAtual = hoje.getMonth();
+        const mesNascimento = dataNascimento.getMonth();
+        
+        if (mesNascimento > mesAtual || 
+            (mesNascimento === mesAtual && hoje.getDate() < dataNascimento.getDate())) {
+            idade--;
+        }
+        
         if (idade < 13) {
-            showError(dataInput, 'Você deve ter pelo menos 13 anos');
+            showError(dataInput, 'Cê tem que 13 anos');
             return false;
         }
+        
         if (idade > 120) {
-            showError(dataInput, 'Você não pode ter mais de 120 anos');
+            showError(dataInput, 'Deus não deixa ter mais de 120 anos');
+            return false;
+        }
+        if (dataNascimento > hoje) {
+            showError(dataInput, 'Data de nascimento não pode ser no futuro');
             return false;
         }
         
@@ -94,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function validateCartao() {
         const value = cartaoInput.value.trim();
         if (!value) {
-            showError(cartaoInput, 'Por favor, digite seu número de cartão');
+            showError(cartaoInput, 'Digita Pufavô 🥺🥺🥺');
             return false;
         }
         hideError(cartaoInput);
@@ -104,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function validateCarro() {
         const value = carroInput.value.trim();
         if (!value.includes(' ')) {
-            showError(carroInput, 'Informe Marca, Modelo e Ano separados por espaços');
+            showError(carroInput, 'É difícil separar Marca, Modelo e Ano por espaços?');
             return false;
         }
         hideError(carroInput);
@@ -142,7 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         if (!isChecked) {
-            document.querySelector('.multipla_escolha').style.border = '1px solid var(--color-red)';
+            document.querySelector('.multipla_escolha').style.border = '3px solid var(--color-red)';
             return false;
         }
         document.querySelector('.multipla_escolha').style.border = 'none';
@@ -156,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         if (!isChecked) {
-            document.querySelector('.caixa_selecao').style.border = '1px solid var(--color-red)';
+            document.querySelector('.caixa_selecao').style.border = '3px solid var(--color-red)';
             return false;
         }
         document.querySelector('.caixa_selecao').style.border = 'none';
